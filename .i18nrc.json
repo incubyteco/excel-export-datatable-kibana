@@ -1,0 +1,7 @@
+{
+  "prefix": "excelExportDatatable",
+  "paths": {
+    "excelExportDatatable": "."
+  },
+  "translations": ["translations/ja-JP.json"]
+}
