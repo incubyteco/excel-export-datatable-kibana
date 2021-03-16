@@ -8,13 +8,16 @@
     "visualizations",
     "data",
     "kibanaLegacy"
+
+
   ],
-  "requiredBundles": [
+  "requiredBundles": [ 
     "kibanaUtils",
     "kibanaReact",
     "share",
     "charts",
-    "visDefaultEditor"
-  ],
+    "visDefaultEditor" 
+   ],
   "optionalPlugins": ["usageCollection"]
 }
+

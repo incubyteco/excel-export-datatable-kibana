@@ -16,7 +16,7 @@ import { CoreStart } from 'kibana/public';
 import { useKibana } from '../../../../src/plugins/kibana_react/public';
 import { FormattedColumn } from '../types';
 import { Table } from '../table_vis_response_handler';
-import { exportAsCsv } from '../utils';
+import { exportAsCsv,exportAsExcel } from '../utils';
 
 interface TableVisControlsProps {
   dataGridAriaLabel: string;
@@ -43,6 +43,16 @@ export const TableVisControls = memo(({ dataGridAriaLabel, ...props }: TableVisC
       }),
     [props, uiSettings]
   );
+
+  const onClickExcelExport = useCallback(
+    (formatted: boolean) =>
+    exportAsExcel(formatted, {
+        ...props,
+        uiSettings,
+      }),
+    [props, uiSettings]
+  );
+
 
   const exportBtnAriaLabel = i18n.translate('visTypeTable.vis.controls.exportButtonAriaLabel', {
     defaultMessage: 'Export {dataGridAriaLabel} as CSV',
@@ -74,9 +84,9 @@ export const TableVisControls = memo(({ dataGridAriaLabel, ...props }: TableVisC
         defaultMessage="Formatted"
       />
     </EuiContextMenuItem>,
-    <EuiContextMenuItem key="excel" onClick={() => onClickExport(true)}>
+    <EuiContextMenuItem key="excel" onClick={() => onClickExcelExport(true)}>
     <FormattedMessage
-      id="visTypeTable.vis.controls.formattedCSVButtonLabel"
+      id="excelExportButtonLabel"
       defaultMessage="Excel Export"
     />
   </EuiContextMenuItem>

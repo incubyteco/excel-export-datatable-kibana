@@ -8,3 +8,5 @@
 
 export * from './use';
 export * from './export_as_csv';
+export * from './export_as_excel';
+
