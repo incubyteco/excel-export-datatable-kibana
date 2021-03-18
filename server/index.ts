@@ -8,7 +8,7 @@
 
 import { PluginConfigDescriptor } from 'kibana/server';
 
-import { configSchema, ConfigSchema } from '../config';
+import { configSchema, ConfigSchema } from '../common/config';
 
 export const config: PluginConfigDescriptor<ConfigSchema> = {
   exposeToBrowser: {
