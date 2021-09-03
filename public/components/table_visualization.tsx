@@ -12,9 +12,9 @@ import classNames from 'classnames';
 
 import { CoreStart } from 'kibana/public';
 import { IInterpreterRenderHandlers } from 'src/plugins/expressions';
+import type { PersistedState } from 'src/plugins/visualizations/public';
 import { KibanaContextProvider } from '../../../../src/plugins/kibana_react/public';
-import { TableVisConfig } from '../types';
-import { TableContext } from '../table_vis_response_handler';
+import { TableVisConfig, TableVisData } from '../types';
 import { TableVisBasic } from './table_vis_basic';
 import { TableVisSplit } from './table_vis_split';
 import { useUiState } from '../utils';
@@ -22,7 +22,7 @@ import { useUiState } from '../utils';
 interface TableVisualizationComponentProps {
   core: CoreStart;
   handlers: IInterpreterRenderHandlers;
-  visData: TableContext;
+  visData: TableVisData;
   visConfig: TableVisConfig;
 }
 
@@ -36,7 +36,7 @@ const TableVisualizationComponent = ({
     handlers.done();
   }, [handlers]);
 
-  const uiStateProps = useUiState(handlers.uiState);
+  const uiStateProps = useUiState(handlers.uiState as PersistedState);
 
   const className = classNames('tbvChart', {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -48,14 +48,12 @@ const TableVisualizationComponent = ({
       <KibanaContextProvider services={core}>
         <div className={className} data-test-subj="tbvChart">
           {table ? (
-            <div className="tbvChart__split">
-              <TableVisBasic
-                fireEvent={handlers.event}
-                table={table}
-                visConfig={visConfig}
-                uiStateProps={uiStateProps}
-              />
-            </div>
+            <TableVisBasic
+              fireEvent={handlers.event}
+              table={table}
+              visConfig={visConfig}
+              uiStateProps={uiStateProps}
+            />
           ) : (
             <TableVisSplit
               fireEvent={handlers.event}

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { PluginInitializerContext, CoreSetup, CoreStart, Plugin } from 'kibana/public';
+import { PluginInitializerContext, CoreSetup, CoreStart, AsyncPlugin } from 'kibana/public';
 import { Plugin as ExpressionsPublicPlugin } from '../../../src/plugins/expressions/public';
 import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
 import { UsageCollectionSetup } from '../../../src/plugins/usage_collection/public';
@@ -34,8 +34,7 @@ export interface TablePluginStartDependencies {
 
 /** @internal */
 export class ExcelExportDatatablePlugin
-  implements
-    Plugin<Promise<void>, void, TablePluginSetupDependencies, TablePluginStartDependencies> {
+  implements AsyncPlugin<void, void, TablePluginSetupDependencies, TablePluginStartDependencies> {
   initializerContext: PluginInitializerContext<ClientConfigType>;
 
   constructor(initializerContext: PluginInitializerContext) {

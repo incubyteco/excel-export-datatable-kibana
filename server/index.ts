@@ -8,7 +8,7 @@
 
 import { PluginConfigDescriptor } from 'kibana/server';
 
-import { configSchema, ConfigSchema } from '../common/config';
+import { configSchema, ConfigSchema } from '../config';
 
 export const config: PluginConfigDescriptor<ConfigSchema> = {
   exposeToBrowser: {
@@ -16,7 +16,7 @@ export const config: PluginConfigDescriptor<ConfigSchema> = {
   },
   schema: configSchema,
   deprecations: ({ renameFromRoot }) => [
-    renameFromRoot('table_vis.enabled', 'vis_type_table.enabled'),
+    renameFromRoot('excel_export_table_vis.enabled', 'vis_type_table.enabled'),
   ],
 };
 
