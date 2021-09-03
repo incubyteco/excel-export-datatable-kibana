@@ -11,7 +11,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 
 import { CoreStart } from 'kibana/public';
 import { VisualizationContainer } from '../../../src/plugins/visualizations/public';
-import { ExpressionRenderDefinition } from '../../../src/plugins/expressions/common/expression_renderers';
+import { ExpressionRenderDefinition } from '../../../src/plugins/expressions';
 import { TableVisRenderValue } from './table_vis_fn';
 
 const TableVisualizationComponent = lazy(() => import('./components/table_visualization'));
@@ -19,7 +19,7 @@ const TableVisualizationComponent = lazy(() => import('./components/table_visual
 export const getTableVisRenderer: (
   core: CoreStart
 ) => ExpressionRenderDefinition<TableVisRenderValue> = (core) => ({
-  name: 'exportExcelDatatable',
+  name: 'excel_export_table_vis',
   reuseDomNode: true,
   render: async (domNode, { visData, visConfig }, handlers) => {
     handlers.onDestroy(() => {

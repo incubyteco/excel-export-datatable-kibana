@@ -6,5 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './use';
-export * from './table_vis_response_handler';
+export * from './types';

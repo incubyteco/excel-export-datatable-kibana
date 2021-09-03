@@ -8,7 +8,7 @@
 
 import { debounce, isEqual } from 'lodash';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { IInterpreterRenderHandlers } from 'src/plugins/expressions';
+import type { PersistedState } from 'src/plugins/visualizations/public';
 
 import { ColumnWidthData, TableVisUiState, TableVisUseUiStateProps } from '../../types';
 
@@ -17,9 +17,7 @@ const defaultSort = {
   direction: null,
 };
 
-export const useUiState = (
-  uiState: IInterpreterRenderHandlers['uiState']
-): TableVisUseUiStateProps => {
+export const useUiState = (uiState: PersistedState): TableVisUseUiStateProps => {
   const [sort, setSortState] = useState<TableVisUiState['sort']>(
     uiState?.get('vis.params.sort') || defaultSort
   );

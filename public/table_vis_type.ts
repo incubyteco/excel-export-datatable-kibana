@@ -7,19 +7,20 @@
  */
 
 import { i18n } from '@kbn/i18n';
+
 import { AggGroupNames } from '../../../src/plugins/data/public';
-import { Schemas } from '../../../src/plugins/vis_default_editor/public';
-import { BaseVisTypeOptions } from '../../../src/plugins/visualizations/public';
-
+import {
+  VIS_EVENT_TO_TRIGGER,
+  VisTypeDefinition,
+} from '../../../src/plugins/visualizations/public';
+import { TableVisParams, VIS_TYPE_TABLE } from '../common';
 import { TableOptions } from './components/table_vis_options_lazy';
-import { VIS_EVENT_TO_TRIGGER } from '../../../src/plugins/visualizations/public';
 import { toExpressionAst } from './to_ast';
-import { TableVisParams } from './types';
 
-export const tableVisTypeDefinition: BaseVisTypeOptions<TableVisParams> = {
-  name: 'exportExcelDatatable',
+export const tableVisTypeDefinition: VisTypeDefinition<TableVisParams> = {
+  name: VIS_TYPE_TABLE,
   title: i18n.translate('visTypeTable.tableVisTitle', {
-    defaultMessage: 'Data table with Excel Export',
+    defaultMessage: 'Data table with excel export',
   }),
   icon: 'visTable',
   description: i18n.translate('visTypeTable.tableVisDescription', {
@@ -41,14 +42,14 @@ export const tableVisTypeDefinition: BaseVisTypeOptions<TableVisParams> = {
   },
   editorConfig: {
     optionsTemplate: TableOptions,
-    schemas: new Schemas([
+    schemas: [
       {
         group: AggGroupNames.Metrics,
         name: 'metric',
         title: i18n.translate('visTypeTable.tableVisEditorConfig.schemas.metricTitle', {
           defaultMessage: 'Metric',
         }),
-        aggFilter: ['!geo_centroid', '!geo_bounds'],
+        aggFilter: ['!geo_centroid', '!geo_bounds', '!filtered_metric', '!single_percentile'],
         aggSettings: {
           top_hits: {
             allowStrings: true,
@@ -75,8 +76,9 @@ export const tableVisTypeDefinition: BaseVisTypeOptions<TableVisParams> = {
         max: 1,
         aggFilter: ['!filter'],
       },
-    ]),
+    ],
   },
   toExpressionAst,
   hierarchicalData: (vis) => vis.params.showPartialRows || vis.params.showMetricsAtAllLevels,
+  requiresSearch: true,
 };
