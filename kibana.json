@@ -11,9 +11,7 @@
   "requiredPlugins": [
     "expressions",
     "data",
-    "charts"
-  ],
-  "requiredBundles": [
+    "charts",
     "visualizations",
     "kibanaUtils",
     "kibanaReact",
