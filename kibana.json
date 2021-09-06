@@ -1,18 +1,24 @@
 {
   "id": "exportExcelDatatable",
-  "version": "kibana",
+  "version": "1.0.0",
+  "kibanaVersion": "kibana",
   "server": true,
   "ui": true,
+  "owner": {
+    "name": "hardikpnsp",
+    "githubTeam": ""
+  },
   "requiredPlugins": [
     "expressions",
-    "visualizations",
     "data",
-    "kibanaLegacy",
+    "charts"
+  ],
+  "requiredBundles": [
+    "visualizations",
     "kibanaUtils",
     "kibanaReact",
-    "share",
-    "charts",
-    "visDefaultEditor"
+    "visDefaultEditor",
+    "share"
   ],
 
   "optionalPlugins": ["usageCollection"]
