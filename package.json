@@ -8,6 +8,6 @@
     "kbn": "node ../../scripts/kbn"
   },
   "dependencies": {
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.18.5"
   }
 }

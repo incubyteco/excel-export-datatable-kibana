@@ -122,8 +122,7 @@ export const TableVisBasic = memo(
             visibleColumns: columns.map(({ id }) => id),
             setVisibleColumns: () => {},
           }}
-          toolbarVisibility={
-            visConfig.showToolbar && {
+          toolbarVisibility={{
               showColumnSelector: false,
               showFullScreenSelector: false,
               showSortSelector: false,
@@ -137,8 +136,7 @@ export const TableVisBasic = memo(
                   filename={visConfig.title}
                 />
               ),
-            }
-          }
+          }}
           renderCellValue={renderCellValue}
           renderFooterCellValue={
             visConfig.showTotal
